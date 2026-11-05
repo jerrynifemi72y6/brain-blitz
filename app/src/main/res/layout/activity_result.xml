@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
+    android:background="@drawable/bg_glow"
     android:fillViewport="true">
 
     <LinearLayout
@@ -11,7 +11,7 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingLeft="26dp"
-        android:paddingTop="48dp"
+        android:paddingTop="56dp"
         android:paddingRight="26dp"
         android:paddingBottom="32dp">
 
@@ -37,15 +37,14 @@
             android:id="@+id/tvResultScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="14dp"
             android:fontFamily="sans-serif-black"
             android:textColor="@color/text_primary"
-            android:textSize="76sp" />
+            android:textSize="78sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
             android:letterSpacing="0.2"
             android:text="@string/result_points_unit"
             android:textColor="@color/text_muted"
@@ -56,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/bg_pill"
+            android:background="@drawable/glass_pill"
             android:fontFamily="sans-serif-medium"
             android:letterSpacing="0.1"
             android:paddingLeft="16dp"
@@ -68,45 +67,52 @@
             android:textSize="11sp"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvResultDetail"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp" />
+            android:layout_marginTop="22dp"
+            android:background="@drawable/glass_card"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
 
-        <TextView
-            android:id="@+id/tvResultBest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:textColor="@color/text_muted"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tvResultDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvResultStreak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/accent_alt"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvResultBest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/text_muted"
+                android:textSize="13sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/btnPlayAgain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="34dp"
-            android:background="@drawable/bg_primary_button"
-            android:clickable="true"
-            android:focusable="true"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:letterSpacing="0.06"
-            android:paddingTop="19dp"
-            android:paddingBottom="19dp"
-            android:text="@string/play_again"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp" />
+            style="@style/PrimaryButton"
+            android:layout_marginTop="28dp"
+            android:text="@string/play_again" />
 
         <TextView
             android:id="@+id/btnHome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/bg_card_clickable"
+            android:background="@drawable/glass_button_soft"
             android:clickable="true"
             android:focusable="true"
             android:fontFamily="sans-serif-medium"

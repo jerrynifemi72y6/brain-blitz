@@ -19,8 +19,7 @@ object QuestionBank {
         cached?.let { return it }
 
         val raw = context.assets.open("questionbank.json").bufferedReader().use { it.readText() }
-        val root = JSONObject(raw)
-        val arr = root.getJSONArray("categories")
+        val arr = JSONObject(raw).getJSONArray("categories")
 
         val out = ArrayList<Category>()
         for (i in 0 until arr.length()) {
@@ -50,7 +49,7 @@ object QuestionBank {
                     )
                 )
             }
-            out.add(Category(id, name, questions))
+            if (questions.isNotEmpty()) out.add(Category(id, name, questions))
         }
 
         cached = out
@@ -61,6 +60,6 @@ object QuestionBank {
         categories(context).firstOrNull { it.id == id }
 
     fun questionsFor(context: Context, id: String): List<Question> =
-        if (id == ALL_ID) categories(context).flatMap { it.questions }
+        if (id == ALL_ID) categories(context).flatMap { it.questions }.distinctBy { it.text }
         else byId(context, id)?.questions ?: emptyList()
 }

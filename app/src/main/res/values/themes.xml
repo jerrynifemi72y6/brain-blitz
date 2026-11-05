@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="AppTheme" parent="@android:style/Theme.Material.NoActionBar">
-        <item name="android:windowBackground">@drawable/bg_gradient</item>
+        <item name="android:windowBackground">@drawable/bg_glow</item>
         <item name="android:colorPrimary">@color/accent</item>
         <item name="android:colorPrimaryDark">@color/bg_top</item>
         <item name="android:colorAccent">@color/accent_alt</item>
-        <item name="android:statusBarColor">@color/bg_top</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/bg_bottom</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_muted</item>
@@ -16,6 +16,22 @@
         <item name="android:textSize">12sp</item>
         <item name="android:letterSpacing">0.18</item>
         <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="GlassTitle">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0.03</item>
+    </style>
+
+    <style name="Chip">
+        <item name="android:background">@drawable/glass_pill</item>
+        <item name="android:textColor">@color/accent_alt</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
     </style>
 
     <style name="OptionText">
@@ -33,5 +49,20 @@
         <item name="android:background">@drawable/bg_option</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
+    </style>
+
+    <style name="PrimaryButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/glass_button</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:gravity">center</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:paddingTop">19dp</item>
+        <item name="android:paddingBottom">19dp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>

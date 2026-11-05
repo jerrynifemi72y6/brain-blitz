@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_glow">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingTop="26dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="22dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnWsBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/glass_pill"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/back"
+                    android:textColor="@color/text_muted"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tvWsPack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="0.12"
+                    android:textColor="@color/accent_alt"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tvWsTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/glass_pill"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingLeft="14dp"
+                    android:paddingTop="7dp"
+                    android:paddingRight="14dp"
+                    android:paddingBottom="7dp"
+                    android:textColor="@color/text_muted"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvWsScore"
+                style="@style/GlassTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="26sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/ws_hint"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp" />
+
+            <com.jerrynifemi.brainblitz.WordSearchView
+                android:id="@+id/wordBoard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tvWsWords"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/glass_card"
+                android:lineSpacingExtra="6dp"
+                android:paddingLeft="18dp"
+                android:paddingTop="16dp"
+                android:paddingRight="18dp"
+                android:paddingBottom="16dp"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/wsOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3060310"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="26dp"
+            android:background="@drawable/glass_card"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="22dp"
+            android:paddingTop="28dp"
+            android:paddingRight="22dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:id="@+id/tvWsOverlayTitle"
+                style="@style/GlassTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tvWsOverlayDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/text_muted"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/btnWsAgain"
+                style="@style/PrimaryButton"
+                android:layout_marginTop="22dp"
+                android:text="@string/new_puzzle" />
+
+            <TextView
+                android:id="@+id/btnWsHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/glass_button_soft"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:text="@string/back_home"
+                android:textColor="@color/text_muted"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

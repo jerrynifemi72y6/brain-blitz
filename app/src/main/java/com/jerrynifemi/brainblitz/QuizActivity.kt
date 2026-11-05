@@ -10,8 +10,10 @@ import android.os.Handler
 import android.os.Looper
 import android.view.HapticFeedbackConstants
 import android.view.View
+import android.view.animation.OvershootInterpolator
 import android.widget.ProgressBar
 import android.widget.TextView
+import kotlin.random.Random
 
 class QuizActivity : Activity() {
 
@@ -25,13 +27,16 @@ class QuizActivity : Activity() {
 
     private val handler = Handler(Looper.getMainLooper())
 
+    private val praise = arrayOf("Nailed it", "Too easy", "Sharp", "Yes!", "Clean", "On fire", "Silky")
+    private val ouch = arrayOf("Ouch", "Nope", "Not quite", "Missed it")
+
     private lateinit var tvScore: TextView
     private lateinit var tvStreak: TextView
     private lateinit var tvCounter: TextView
     private lateinit var tvCategory: TextView
     private lateinit var tvQuestion: TextView
     private lateinit var tvFeedback: TextView
-    private lateinit var timeLeftLabel: TextView
+    private lateinit var tvSeconds: TextView
     private lateinit var timeBar: ProgressBar
 
     private val optionViews = ArrayList<TextView>()
@@ -41,6 +46,7 @@ class QuizActivity : Activity() {
     private var score = 0
     private var correctCount = 0
     private var streak = 0
+    private var maxStreak = 0
     private var answered = false
     private var timeLeftMs = TIME_MS
     private var timer: CountDownTimer? = null
@@ -61,8 +67,8 @@ class QuizActivity : Activity() {
         tvCategory = findViewById(R.id.tvQuizCategory)
         tvQuestion = findViewById(R.id.tvQuestion)
         tvFeedback = findViewById(R.id.tvFeedback)
+        tvSeconds = findViewById(R.id.tvSeconds)
         timeBar = findViewById(R.id.timeBar)
-        timeLeftLabel = findViewById(R.id.tvSeconds)
 
         optionViews.clear()
         optionViews.add(findViewById(R.id.option1))
@@ -71,7 +77,6 @@ class QuizActivity : Activity() {
         optionViews.add(findViewById(R.id.option4))
 
         tvCategory.text = categoryLabel.uppercase()
-
         findViewById<View>(R.id.btnQuit).setOnClickListener { finish() }
 
         val pool = QuestionBank.questionsFor(this, categoryId).shuffled()
@@ -105,12 +110,19 @@ class QuizActivity : Activity() {
         tvFeedback.text = ""
         tvFeedback.visibility = View.INVISIBLE
 
+        // Little entrance so each question feels fresh.
+        tvQuestion.alpha = 0f
+        tvQuestion.translationY = 18f
+        tvQuestion.animate().alpha(1f).translationY(0f).setDuration(220).start()
+
         optionViews.forEachIndexed { i, view ->
             view.text = q.options.getOrElse(i) { "" }
             view.visibility = if (i < q.options.size) View.VISIBLE else View.INVISIBLE
             view.setBackgroundResource(R.drawable.bg_option)
             view.isEnabled = true
             view.alpha = 1f
+            view.scaleX = 1f
+            view.scaleY = 1f
             view.setOnClickListener { onOptionTapped(i) }
         }
 
@@ -123,13 +135,13 @@ class QuizActivity : Activity() {
         timeBar.progressTintList = ColorStateList.valueOf(color(R.color.accent_alt))
         timeBar.max = 1000
         timeBar.progress = 1000
-        timeLeftLabel.text = "15s"
+        tvSeconds.text = "15s"
 
         timer = object : CountDownTimer(TIME_MS, TICK_MS) {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeftMs = millisUntilFinished
                 timeBar.progress = ((millisUntilFinished * 1000) / TIME_MS).toInt()
-                timeLeftLabel.text = String.format("%ds", (millisUntilFinished / 1000) + 1)
+                tvSeconds.text = String.format("%ds", (millisUntilFinished / 1000) + 1)
                 if (millisUntilFinished <= 4000) {
                     timeBar.progressTintList = ColorStateList.valueOf(color(R.color.wrong))
                 }
@@ -154,15 +166,20 @@ class QuizActivity : Activity() {
         if (isCorrect) {
             correctCount++
             streak++
+            maxStreak = maxOf(maxStreak, streak)
             val speedBonus = (timeLeftMs / 1000).toInt() * 5
             val streakBonus = minOf(streak - 1, 5) * 20
             val gained = 100 + speedBonus + streakBonus
             score += gained
-            showFeedback(getString(R.string.feedback_correct, gained), R.color.accent_alt)
+            optionViews[tapped].animate().scaleX(1.06f).scaleY(1.06f).setDuration(120).start()
+            showFeedback(
+                praise[Random.nextInt(praise.size)] + "   +" + gained,
+                R.color.accent_alt
+            )
         } else {
             streak = 0
             optionViews[tapped].setBackgroundResource(R.drawable.bg_option_wrong)
-            showFeedback(getString(R.string.feedback_wrong), R.color.wrong)
+            showFeedback(ouch[Random.nextInt(ouch.size)], R.color.wrong)
         }
 
         updateScoreLabels()
@@ -186,6 +203,13 @@ class QuizActivity : Activity() {
         tvFeedback.text = text
         tvFeedback.setTextColor(color(colorRes))
         tvFeedback.visibility = View.VISIBLE
+        tvFeedback.scaleX = 0.7f
+        tvFeedback.scaleY = 0.7f
+        tvFeedback.animate()
+            .scaleX(1f).scaleY(1f)
+            .setDuration(260)
+            .setInterpolator(OvershootInterpolator(2f))
+            .start()
     }
 
     private fun lockOptions() {
@@ -197,8 +221,11 @@ class QuizActivity : Activity() {
 
     private fun updateScoreLabels() {
         tvScore.text = getString(R.string.score_label, score)
-        tvStreak.text = if (streak >= 2) getString(R.string.streak_label, streak)
-        else getString(R.string.streak_empty)
+        tvStreak.text = when {
+            streak >= 3 -> getString(R.string.streak_hot, streak)
+            streak >= 2 -> getString(R.string.streak_label, streak)
+            else -> ""
+        }
     }
 
     private fun advance() {
@@ -224,6 +251,7 @@ class QuizActivity : Activity() {
                 putExtra(ResultActivity.EXTRA_TOTAL, questions.size)
                 putExtra(ResultActivity.EXTRA_BEST, Scores.best(this@QuizActivity, categoryId))
                 putExtra(ResultActivity.EXTRA_NEW_BEST, newBest)
+                putExtra(ResultActivity.EXTRA_MAX_STREAK, maxStreak)
                 putExtra(ResultActivity.EXTRA_CATEGORY_ID, categoryId)
                 putExtra(ResultActivity.EXTRA_CATEGORY_LABEL, categoryLabel)
             }

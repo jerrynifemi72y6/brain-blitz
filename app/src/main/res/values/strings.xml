@@ -2,32 +2,51 @@
 <resources>
     <string name="app_name">Brain Blitz</string>
 
-    <string name="home_kicker">TRIVIA, BUT FAST</string>
+    <!-- splash -->
+    <string name="splash_title">BRAIN BLITZ</string>
+    <string name="splash_tagline">trivia, word search, candy chaos</string>
+
+    <!-- home -->
+    <string name="home_kicker">PICK YOUR POISON</string>
     <string name="home_title">BRAIN BLITZ</string>
-    <string name="home_tagline">10 questions. 15 seconds each. Answer fast for bonus points.</string>
-    <string name="home_best_label">YOUR BEST</string>
-    <string name="best_score_value">%1$d</string>
-    <string name="home_best_unit">points</string>
-    <string name="play_button">PLAY 10 QUESTIONS</string>
-    <string name="home_pick_category">OR PICK A CATEGORY</string>
-    <string name="category_best">%1$d pts</string>
+    <string name="home_tagline">Three ways to wreck your friends. All offline.</string>
+    <string name="mode_trivia">Trivia</string>
+    <string name="mode_trivia_sub">Ten questions, fifteen seconds each</string>
+    <string name="mode_trivia_meta">%1$d categories · %2$d questions</string>
+    <string name="mode_word">Word Search</string>
+    <string name="mode_word_sub">Drag across the letters, find every word</string>
+    <string name="mode_word_meta">6 word packs · 2:30 per puzzle</string>
+    <string name="mode_match">Sugar Rush</string>
+    <string name="mode_match_sub">Swap candies, line up three or more</string>
+    <string name="mode_match_meta">25 moves per board</string>
+    <string name="home_footer">built for Jerry · plays offline · no ads</string>
+    <string name="best_chip">%1$d pts</string>
+
+    <!-- categories -->
+    <string name="pick_category">Pick a category</string>
+    <string name="category_count">%1$d categories, %2$d questions total</string>
+    <string name="question_chip">%1$d Qs</string>
+    <string name="all_questions_chip">all of it</string>
     <string name="mixed_label">Mixed bag</string>
+    <string name="back">BACK</string>
 
-    <string name="quit_button">QUIT</string>
-    <string name="question_counter">QUESTION %1$d OF %2$d</string>
+    <!-- quiz -->
     <string name="score_label">SCORE %1$d</string>
+    <string name="moves_label">MOVES %1$d</string>
+    <string name="question_counter">QUESTION %1$d OF %2$d</string>
     <string name="streak_label">STREAK ×%1$d</string>
-    <string name="streak_empty"></string>
-    <string name="feedback_correct">Correct  +%1$d</string>
-    <string name="feedback_wrong">Wrong answer</string>
-    <string name="feedback_timeout">Time up</string>
+    <string name="streak_hot">🔥 STREAK ×%1$d</string>
+    <string name="feedback_timeout">Time up!</string>
     <string name="no_questions">No questions in this category yet.</string>
+    <string name="quit_button">QUIT</string>
 
-    <string name="result_kicker">ROUND COMPLETE</string>
+    <!-- result -->
     <string name="result_points_unit">POINTS</string>
     <string name="result_correct_of">%1$d of %2$d correct</string>
     <string name="result_best">Personal best: %1$d</string>
+    <string name="result_streak">Best streak ×%1$d</string>
     <string name="result_new_best">NEW PERSONAL BEST</string>
+    <string name="verdict_perfect">Flawless. Absolutely flawless.</string>
     <string name="verdict_legend">Certified genius.</string>
     <string name="verdict_sharp">Sharp work.</string>
     <string name="verdict_solid">Solid run.</string>
@@ -35,4 +54,19 @@
     <string name="verdict_warmup">That was a warm-up.</string>
     <string name="play_again">PLAY AGAIN</string>
     <string name="back_home">BACK HOME</string>
+
+    <!-- word search -->
+    <string name="wordsearch_title">WORD SEARCH</string>
+    <string name="ws_hint">Drag across letters to select a word</string>
+    <string name="ws_overlay_detail">%1$d points  ·  time bonus %2$d  ·  best %3$d%4$s</string>
+    <string name="puzzle_cleared">PUZZLE CLEARED</string>
+    <string name="time_up">TIME\'S UP</string>
+    <string name="new_best_suffix"> · new best!</string>
+    <string name="new_puzzle">NEW PUZZLE</string>
+
+    <!-- match 3 -->
+    <string name="match3_title">SUGAR RUSH</string>
+    <string name="m3_hint">Tap a candy, then a neighbour, to swap</string>
+    <string name="m3_over">OUT OF MOVES</string>
+    <string name="m3_overlay_detail">%1$d points  ·  best %2$d%3$s</string>
 </resources>

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "packs": [
+    { "id": "animals", "name": "Animals", "words": ["TIGER", "ELEPHANT", "GIRAFFE", "DOLPHIN", "RABBIT", "MONKEY", "ZEBRA", "PENGUIN"] },
+    { "id": "tech", "name": "Tech", "words": ["ROBOT", "PIXEL", "BINARY", "SERVER", "LAPTOP", "CIRCUIT", "BROWSER", "ANDROID"] },
+    { "id": "africa", "name": "Africa", "words": ["LAGOS", "ABUJA", "NILE", "SAHARA", "SAFARI", "ACCRA", "CAIRO", "GHANA"] },
+    { "id": "food", "name": "Food", "words": ["JOLLOF", "BANANA", "PEPPER", "NOODLE", "MANGO", "CASSAVA", "PLANTAIN", "EGUSI"] },
+    { "id": "music", "name": "Music", "words": ["GUITAR", "PIANO", "DRUMS", "VIOLIN", "TRUMPET", "MELODY", "RHYTHM", "SAXOPHONE"] },
+    { "id": "space", "name": "Space", "words": ["PLANET", "COMET", "GALAXY", "ROCKET", "SATURN", "ORBIT", "NEBULA", "METEOR"] }
+  ]
+}
