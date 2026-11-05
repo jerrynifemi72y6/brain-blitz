@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "general",
+      "name": "General Knowledge",
+      "questions": [
+        { "q": "What is the capital of Australia?", "options": ["Sydney", "Melbourne", "Canberra", "Perth"], "answer": 2 },
+        { "q": "Which is the largest ocean on Earth?", "options": ["Atlantic", "Indian", "Arctic", "Pacific"], "answer": 3 },
+        { "q": "What is the currency of Japan?", "options": ["Won", "Yen", "Yuan", "Baht"], "answer": 1 },
+        { "q": "How many sides does a hexagon have?", "options": ["5", "6", "7", "8"], "answer": 1 },
+        { "q": "What is the smallest country in the world by area?", "options": ["Monaco", "Vatican City", "Nauru", "San Marino"], "answer": 1 },
+        { "q": "What is the capital of Canada?", "options": ["Toronto", "Vancouver", "Ottawa", "Montreal"], "answer": 2 },
+        { "q": "How many minutes are there in a full day?", "options": ["1440", "1240", "960", "1800"], "answer": 0 },
+        { "q": "Which country has the largest population?", "options": ["China", "United States", "India", "Indonesia"], "answer": 2 },
+        { "q": "How many colours are in a rainbow?", "options": ["5", "6", "7", "8"], "answer": 2 },
+        { "q": "Which ocean lies between Africa and Australia?", "options": ["Atlantic", "Pacific", "Indian", "Southern"], "answer": 2 },
+        { "q": "How many days are in a leap year?", "options": ["364", "365", "366", "367"], "answer": 2 },
+        { "q": "Which mountain is the tallest above sea level?", "options": ["K2", "Mount Everest", "Mount Kilimanjaro", "Denali"], "answer": 1 },
+        { "q": "On which continent is the Sahara Desert?", "options": ["Asia", "Africa", "Australia", "South America"], "answer": 1 },
+        { "q": "What does HTTP stand for?", "options": ["HyperText Transfer Protocol", "High Transfer Text Process", "Hyperlink Text Transfer Program", "Host Transfer Protocol"], "answer": 0 },
+        { "q": "How many players from one team are on a football pitch?", "options": ["9", "10", "11", "12"], "answer": 2 },
+        { "q": "What is the capital of Kenya?", "options": ["Nairobi", "Mombasa", "Kampala", "Addis Ababa"], "answer": 0 },
+        { "q": "Which language has the most native speakers?", "options": ["English", "Spanish", "Mandarin Chinese", "Hindi"], "answer": 2 },
+        { "q": "Which country is the largest by land area?", "options": ["Canada", "China", "Russia", "United States"], "answer": 2 }
+      ]
+    },
+    {
+      "id": "science",
+      "name": "Science & Tech",
+      "questions": [
+        { "q": "What is the chemical symbol for gold?", "options": ["Ag", "Au", "Fe", "Go"], "answer": 1 },
+        { "q": "Which gas do plants absorb from the air?", "options": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"], "answer": 2 },
+        { "q": "How many bones are in the adult human body?", "options": ["186", "206", "226", "246"], "answer": 1 },
+        { "q": "What does CPU stand for?", "options": ["Central Processing Unit", "Computer Power Unit", "Core Program Utility", "Central Program Unit"], "answer": 0 },
+        { "q": "Which planet has the most confirmed moons?", "options": ["Jupiter", "Saturn", "Neptune", "Uranus"], "answer": 1 },
+        { "q": "What is the hardest natural substance?", "options": ["Gold", "Quartz", "Diamond", "Granite"], "answer": 2 },
+        { "q": "What is the speed of light, roughly?", "options": ["30,000 km/s", "300,000 km/s", "3,000,000 km/s", "3,000 km/s"], "answer": 1 },
+        { "q": "What is the largest organ in the human body?", "options": ["Liver", "Skin", "Lungs", "Brain"], "answer": 1 },
+        { "q": "In which year did the first iPhone launch?", "options": ["2005", "2007", "2009", "2010"], "answer": 1 },
+        { "q": "What does AI stand for?", "options": ["Automated Input", "Artificial Intelligence", "Advanced Interface", "Auto Integration"], "answer": 1 },
+        { "q": "How many hearts does an octopus have?", "options": ["1", "2", "3", "4"], "answer": 2 },
+        { "q": "What does DNA stand for?", "options": ["Deoxyribonucleic acid", "Dinucleic acid", "Deoxyribose nucleotide", "Dual nucleic acid"], "answer": 0 },
+        { "q": "Which gas is most abundant in Earth's atmosphere?", "options": ["Oxygen", "Nitrogen", "Carbon dioxide", "Argon"], "answer": 1 },
+        { "q": "Which company develops the Android operating system?", "options": ["Apple", "Microsoft", "Google", "Samsung"], "answer": 2 },
+        { "q": "Which cell part is known as the powerhouse?", "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi body"], "answer": 2 },
+        { "q": "What is the study of stars and planets called?", "options": ["Geology", "Astronomy", "Astrology", "Ecology"], "answer": 1 },
+        { "q": "What is H2O commonly known as?", "options": ["Salt", "Water", "Hydrogen peroxide", "Oxygen"], "answer": 1 },
+        { "q": "Which planet is closest to the Sun?", "options": ["Venus", "Mercury", "Mars", "Earth"], "answer": 1 }
+      ]
+    },
+    {
+      "id": "sports",
+      "name": "Sports",
+      "questions": [
+        { "q": "How many basketball players from one team are on court?", "options": ["4", "5", "6", "7"], "answer": 1 },
+        { "q": "Which sport is played with a shuttlecock?", "options": ["Tennis", "Badminton", "Squash", "Table tennis"], "answer": 1 },
+        { "q": "How often are the Summer Olympics held?", "options": ["Every 2 years", "Every 3 years", "Every 4 years", "Every 5 years"], "answer": 2 },
+        { "q": "In tennis, what is a score of zero called?", "options": ["Nil", "Love", "Duck", "Blank"], "answer": 1 },
+        { "q": "Which country won the 2022 FIFA World Cup?", "options": ["France", "Brazil", "Argentina", "Croatia"], "answer": 2 },
+        { "q": "How many holes are in a full round of golf?", "options": ["9", "18", "21", "24"], "answer": 1 },
+        { "q": "How many players are in a cricket team?", "options": ["9", "10", "11", "12"], "answer": 2 },
+        { "q": "Which tennis Grand Slam is played on clay?", "options": ["Wimbledon", "US Open", "Australian Open", "French Open"], "answer": 3 },
+        { "q": "How long is a marathon?", "options": ["21 km", "38.5 km", "42.195 km", "50 km"], "answer": 2 },
+        { "q": "Which NBA team wears purple and gold in Los Angeles?", "options": ["Clippers", "Lakers", "Kings", "Suns"], "answer": 1 },
+        { "q": "The pommel horse is used in which sport?", "options": ["Equestrian", "Gymnastics", "Athletics", "Diving"], "answer": 1 },
+        { "q": "How many points is a touchdown worth in American football?", "options": ["2", "3", "6", "7"], "answer": 2 },
+        { "q": "What is Usain Bolt's 100m world record time?", "options": ["9.58 s", "9.63 s", "9.72 s", "9.79 s"], "answer": 0 },
+        { "q": "Which country has won the most AFCON titles?", "options": ["Cameroon", "Nigeria", "Egypt", "Ghana"], "answer": 2 },
+        { "q": "Which sport is played at Wimbledon?", "options": ["Golf", "Tennis", "Cricket", "Rowing"], "answer": 1 },
+        { "q": "How many rounds in a men's world title boxing fight?", "options": ["8", "10", "12", "15"], "answer": 2 },
+        { "q": "Which country hosted the 2016 Summer Olympics?", "options": ["China", "Brazil", "United Kingdom", "Japan"], "answer": 1 }
+      ]
+    },
+    {
+      "id": "culture",
+      "name": "Movies & Music",
+      "questions": [
+        { "q": "Who directed Jurassic Park?", "options": ["James Cameron", "Steven Spielberg", "Ridley Scott", "George Lucas"], "answer": 1 },
+        { "q": "Who played Iron Man in the Marvel films?", "options": ["Chris Evans", "Robert Downey Jr.", "Mark Ruffalo", "Chris Hemsworth"], "answer": 1 },
+        { "q": "Which band recorded Bohemian Rhapsody?", "options": ["The Beatles", "Queen", "Led Zeppelin", "Pink Floyd"], "answer": 1 },
+        { "q": "Which singer is known as the Queen of Pop?", "options": ["Whitney Houston", "Madonna", "Mariah Carey", "Beyoncé"], "answer": 1 },
+        { "q": "How many Oscars did Titanic win?", "options": ["7", "9", "11", "13"], "answer": 2 },
+        { "q": "Who released the album Lemonade?", "options": ["Rihanna", "Beyoncé", "Adele", "Lizzo"], "answer": 1 },
+        { "q": "What is Simba's father called in The Lion King?", "options": ["Scar", "Mufasa", "Rafiki", "Zazu"], "answer": 1 },
+        { "q": "Who released the album Made in Lagos?", "options": ["Davido", "Burna Boy", "Wizkid", "Olamide"], "answer": 2 },
+        { "q": "Who composed the Moonlight Sonata?", "options": ["Mozart", "Beethoven", "Bach", "Chopin"], "answer": 1 },
+        { "q": "What was the first feature-length animated Disney film?", "options": ["Pinocchio", "Snow White and the Seven Dwarfs", "Bambi", "Dumbo"], "answer": 1 },
+        { "q": "Which film series features the line May the Force be with you?", "options": ["Star Trek", "Star Wars", "Dune", "Battlestar Galactica"], "answer": 1 },
+        { "q": "Who wrote the Harry Potter books?", "options": ["J.R.R. Tolkien", "J.K. Rowling", "Roald Dahl", "Philip Pullman"], "answer": 1 },
+        { "q": "Which is the highest-grossing film of all time?", "options": ["Titanic", "Avengers: Endgame", "Avatar", "Star Wars: The Force Awakens"], "answer": 2 },
+        { "q": "How many strings does a standard guitar have?", "options": ["4", "5", "6", "7"], "answer": 2 },
+        { "q": "Which Afrobeats artist is called Odogwu?", "options": ["Wizkid", "Burna Boy", "Davido", "Rema"], "answer": 1 },
+        { "q": "Who directed Inception?", "options": ["Denis Villeneuve", "Christopher Nolan", "David Fincher", "Quentin Tarantino"], "answer": 1 },
+        { "q": "Which instrument has 88 keys?", "options": ["Organ", "Piano", "Accordion", "Harpsichord"], "answer": 1 }
+      ]
+    }
+  ]
+}

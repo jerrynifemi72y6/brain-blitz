@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Brain Blitz</string>
+
+    <string name="home_kicker">TRIVIA, BUT FAST</string>
+    <string name="home_title">BRAIN BLITZ</string>
+    <string name="home_tagline">10 questions. 15 seconds each. Answer fast for bonus points.</string>
+    <string name="home_best_label">YOUR BEST</string>
+    <string name="best_score_value">%1$d</string>
+    <string name="home_best_unit">points</string>
+    <string name="play_button">PLAY 10 QUESTIONS</string>
+    <string name="home_pick_category">OR PICK A CATEGORY</string>
+    <string name="category_best">%1$d pts</string>
+    <string name="mixed_label">Mixed bag</string>
+
+    <string name="quit_button">QUIT</string>
+    <string name="question_counter">QUESTION %1$d OF %2$d</string>
+    <string name="score_label">SCORE %1$d</string>
+    <string name="streak_label">STREAK ×%1$d</string>
+    <string name="streak_empty"></string>
+    <string name="feedback_correct">Correct  +%1$d</string>
+    <string name="feedback_wrong">Wrong answer</string>
+    <string name="feedback_timeout">Time up</string>
+    <string name="no_questions">No questions in this category yet.</string>
+
+    <string name="result_kicker">ROUND COMPLETE</string>
+    <string name="result_points_unit">POINTS</string>
+    <string name="result_correct_of">%1$d of %2$d correct</string>
+    <string name="result_best">Personal best: %1$d</string>
+    <string name="result_new_best">NEW PERSONAL BEST</string>
+    <string name="verdict_legend">Certified genius.</string>
+    <string name="verdict_sharp">Sharp work.</string>
+    <string name="verdict_solid">Solid run.</string>
+    <string name="verdict_warming">Getting warm.</string>
+    <string name="verdict_warmup">That was a warm-up.</string>
+    <string name="play_again">PLAY AGAIN</string>
+    <string name="back_home">BACK HOME</string>
+</resources>
