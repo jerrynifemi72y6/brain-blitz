@@ -60,16 +60,19 @@ def fft_filter(x, lo=None, hi=None, slope=2.0):
     return np.fft.irfft(spec * gain, len(x))
 
 
-def make_ir(seconds=0.55, decay=2.6, predelay=0.012):
+def make_ir(seconds=0.55, decay=2.6, predelay=0.012, seed=7):
     n = int(seconds * SR)
-    ir = rng.standard_normal(n) * np.exp(-np.linspace(0, decay, n))
+    local = np.random.default_rng(seed)
+    ir = local.standard_normal(n) * np.exp(-np.linspace(0, decay, n))
     ir[: int(predelay * SR)] = 0.0
     ir = fft_filter(ir, lo=350, hi=6500)
     energy = np.sqrt(np.sum(ir ** 2)) or 1.0
     return ir / energy
 
 
-IR = make_ir()
+IR = make_ir(seed=7)
+IR_L = make_ir(seconds=0.62, decay=2.4, predelay=0.009, seed=11)
+IR_R = make_ir(seconds=0.58, decay=2.8, predelay=0.016, seed=23)
 
 
 def reverb(x, mix=0.22, ir=None):
@@ -253,7 +256,7 @@ def render_menu():
         # kalimba arpeggio answering the pad
         for k, note in enumerate([chord[0] + 12, chord[2] + 12, chord[1] + 12, chord[3] + 12]):
             at = bar_time + (k * 0.75) * beat
-            mix.add(kalimba(midi_to_hz(note), 0.9, vel=0.55 + 0.1 * (k % 2)), at, pan=-0.35 + 0.2 * k, gain=0.5)
+            mix.add(kalimba(midi_to_hz(note), 0.9, vel=0.55 + 0.1 * (k % 2)), at, pan=-0.62 + 0.42 * (k % 2), gain=0.5)
 
         # bass: syncopated, sits behind the beat
         root = roots[bar % 4]
@@ -263,21 +266,21 @@ def render_menu():
         # drums
         mix.add(kick(), bar_time, gain=0.9)
         mix.add(kick(0.8), bar_time + 2.75 * beat, gain=0.7)
-        mix.add(rim(0.9), bar_time + 2 * beat, pan=0.15, gain=0.55)
+        mix.add(rim(0.9), bar_time + 2 * beat, pan=0.32, gain=0.55)
         mix.add(rim(0.7), bar_time + 3.5 * beat, pan=0.15, gain=0.4)
         for step in range(16):
             at = bar_time + step * beat / 4.0
             if step % 4 == 2:
-                mix.add(hat(0.7, open_=True), at, pan=0.4, gain=0.32)
+                mix.add(hat(0.7, open_=True), at, pan=0.62, gain=0.32)
             elif step % 2 == 0:
-                mix.add(hat(0.6), at, pan=0.4, gain=0.22)
+                mix.add(hat(0.6), at, pan=0.58, gain=0.22)
             if step % 2 == 1:
-                mix.add(shaker(0.6 + 0.25 * (step % 4 == 3)), at, pan=-0.45, gain=0.24)
+                mix.add(shaker(0.6 + 0.25 * (step % 4 == 3)), at, pan=-0.72, gain=0.24)
 
     # the singable part
     scale = [69, 72, 74, 76, 79, 81]  # A minor pentatonic, up high
     for at, note, dur in pentatonic_phrase(scale, bars, beat):
-        mix.add(marimba(midi_to_hz(note), dur + 0.5, vel=0.5), at, pan=0.12, gain=0.42)
+        mix.add(marimba(midi_to_hz(note), dur + 0.5, vel=0.5), at, pan=-0.14, gain=0.42)
 
     out = mix.render(0.82)
 
@@ -287,7 +290,7 @@ def render_menu():
     out[0] += crackle
     out[1] += np.roll(crackle, 37)
 
-    out = np.stack([reverb(out[0], 0.2), reverb(out[1], 0.2)])
+    out = np.stack([reverb(out[0], 0.24, IR_L), reverb(out[1], 0.24, IR_R)])
     out = out[:, : int(bars * 4 * beat * SR)]
     out = np.stack([match_loudness(out[0], -15.0), match_loudness(out[1], -15.0)])
     return np.stack([fade_edges(out[0], 14), fade_edges(out[1], 14)])
@@ -328,20 +331,27 @@ def render_arcade():
         for step in range(16):
             at = bar_time + step * beat / 4.0
             if step % 4 == 2:
-                mix.add(hat(0.75, open_=True), at, pan=0.45, gain=0.3)
+                mix.add(hat(0.75, open_=True), at, pan=0.65, gain=0.3)
             else:
-                mix.add(hat(0.55), at, pan=0.45, gain=0.2)
+                mix.add(hat(0.55), at, pan=0.6, gain=0.2)
             if step in (3, 11):
-                mix.add(rim(0.8), at, pan=-0.2, gain=0.35)
+                mix.add(rim(0.8), at, pan=-0.45, gain=0.35)
 
         # bright arpeggio lead
         arp = [chord[0] + 24, chord[1] + 24, chord[2] + 24, chord[3] + 24, chord[2] + 24, chord[1] + 24]
         for k, note in enumerate(arp):
             at = bar_time + k * beat / 2.0
-            mix.add(marimba(midi_to_hz(note), 0.45, vel=0.42, bright=1.4), at, pan=-0.18 if k % 2 else 0.18, gain=0.5)
+            mix.add(marimba(midi_to_hz(note), 0.45, vel=0.42, bright=1.4), at, pan=-0.55 if k % 2 else 0.55, gain=0.5)
+            # answering echo across the field, a quarter beat later
+            mix.add(
+                marimba(midi_to_hz(note), 0.35, vel=0.26, bright=0.9),
+                at + beat / 4.0,
+                pan=0.6 if k % 2 else -0.6,
+                gain=0.32,
+            )
 
     out = mix.render(0.86)
-    out = np.stack([reverb(out[0], 0.16), reverb(out[1], 0.16)])
+    out = np.stack([reverb(out[0], 0.18, IR_L), reverb(out[1], 0.18, IR_R)])
     out = out[:, : int(bars * 4 * beat * SR)]
     out = np.stack([match_loudness(out[0], -15.0), match_loudness(out[1], -15.0)])
     return np.stack([fade_edges(out[0], 14), fade_edges(out[1], 14)])
