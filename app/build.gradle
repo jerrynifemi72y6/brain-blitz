@@ -11,14 +11,31 @@ android {
         applicationId "com.jerrynifemi.brainblitz"
         minSdk 21
         targetSdk 34
-        versionCode 3
-        versionName "3.0"
+        versionCode 4
+        versionName "3.1"
+    }
+
+    // A fixed key, committed to the repo, so every build can install over the
+    // previous one. Without this each CI run signed with a fresh debug key and
+    // Android refused the update ("App not installed").
+    signingConfigs {
+        release {
+            storeFile file("../keystore/brainblitz.p12")
+            storePassword "brainblitz2026"
+            keyAlias "brainblitz"
+            keyPassword "brainblitz2026"
+            storeType "PKCS12"
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
         }
     }
 
