@@ -51,6 +51,7 @@ class ResultActivity : Activity() {
         findViewById<TextView>(R.id.tvResultLabel).text = categoryLabel.uppercase()
 
         val perfect = correct == total && total > 0
+        Audio.play(this, if (perfect) R.raw.sfx_win else R.raw.sfx_levelup, 0.8f)
         val accuracy = if (total > 0) correct * 100 / total else 0
         findViewById<TextView>(R.id.tvResultVerdict).text =
             if (perfect) getString(R.string.verdict_perfect) else verdictFor(accuracy)

@@ -9,6 +9,8 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StrikethroughSpan
+import android.text.style.StyleSpan
+import android.graphics.Typeface
 import android.view.HapticFeedbackConstants
 import android.view.View
 import android.widget.TextView
@@ -20,6 +22,7 @@ class WordSearchActivity : Activity() {
         const val SCORE_KEY = "wordsearch"
         private const val ROUND_SECONDS = 150
         private const val WORD_POINTS = 100
+        private const val WARN_SECONDS = 20
     }
 
     private val handler = Handler(Looper.getMainLooper())
@@ -35,7 +38,8 @@ class WordSearchActivity : Activity() {
     private var score = 0
     private var secondsLeft = ROUND_SECONDS
     private var finished = false
-    private val found = LinkedHashSet<String>()
+    private val found = LinkedHashMap<String, Int>()
+    private var warned = false
 
     private val tick = object : Runnable {
         override fun run() {
@@ -45,6 +49,10 @@ class WordSearchActivity : Activity() {
             if (secondsLeft <= 0) {
                 finishRound(getString(R.string.time_up), false)
             } else {
+                if (secondsLeft == WARN_SECONDS && !warned) {
+                    warned = true
+                    Audio.play(this@WordSearchActivity, R.raw.sfx_timewarn)
+                }
                 handler.postDelayed(this, 1000)
             }
         }
@@ -73,10 +81,11 @@ class WordSearchActivity : Activity() {
             finish()
         }
 
-        board.onWordFound = { word, _ ->
-            found.add(word)
+        board.onWordFound = { word, _, colorIndex ->
+            found[word] = colorIndex
             score += WORD_POINTS
             board.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            Audio.play(this, R.raw.sfx_word)
             renderScore()
             renderWords()
         }
@@ -89,6 +98,7 @@ class WordSearchActivity : Activity() {
 
     private fun newRound() {
         finished = false
+        warned = false
         score = 0
         secondsLeft = ROUND_SECONDS
         found.clear()
@@ -98,8 +108,7 @@ class WordSearchActivity : Activity() {
         val pack = if (packs.isEmpty()) null else packs[Random.nextInt(packs.size)]
         tvPack.text = pack?.name?.uppercase() ?: getString(R.string.wordsearch_title)
 
-        val words = pack?.words ?: emptyList()
-        board.newPuzzle(words)
+        board.newPuzzle(pack?.words ?: emptyList())
         renderScore()
         renderTimer()
         renderWords()
@@ -111,11 +120,10 @@ class WordSearchActivity : Activity() {
     }
 
     private fun renderTimer() {
-        val m = secondsLeft / 60
-        val s = secondsLeft % 60
-        tvTimer.text = String.format("%d:%02d", m, s)
+        tvTimer.text = String.format("%d:%02d", secondsLeft / 60, secondsLeft % 60)
         tvTimer.setTextColor(
-            if (secondsLeft <= 20) color(R.color.wrong) else color(R.color.text_muted)
+            if (secondsLeft <= WARN_SECONDS) resources.getColor(R.color.wrong)
+            else resources.getColor(R.color.text_muted)
         )
     }
 
@@ -126,12 +134,14 @@ class WordSearchActivity : Activity() {
             val start = builder.length
             builder.append(word)
             val end = builder.length
-            if (found.contains(word)) {
-                builder.setSpan(StrikethroughSpan(), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            val colorIndex = found[word]
+            if (colorIndex != null) {
                 builder.setSpan(
-                    ForegroundColorSpan(color(R.color.accent_alt)),
+                    ForegroundColorSpan(WordSearchView.PALETTE[colorIndex % WordSearchView.PALETTE.size]),
                     start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
+                builder.setSpan(StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                builder.setSpan(StrikethroughSpan(), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
         tvWords.text = builder
@@ -141,6 +151,7 @@ class WordSearchActivity : Activity() {
         if (finished) return
         finished = true
         handler.removeCallbacks(tick)
+        Audio.play(this, if (cleared) R.raw.sfx_win else R.raw.sfx_gameover)
 
         val bonus = if (cleared) secondsLeft * 5 else 0
         score += bonus
@@ -160,7 +171,20 @@ class WordSearchActivity : Activity() {
         overlay.animate().alpha(1f).setDuration(260).start()
     }
 
-    private fun color(resId: Int): Int = resources.getColor(resId)
+    override fun onResume() {
+        super.onResume()
+        Audio.playMusic(this, R.raw.music_arcade)
+        if (!finished && secondsLeft > 0) {
+            handler.removeCallbacks(tick)
+            handler.postDelayed(tick, 1000)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacks(tick)
+        Audio.pauseMusic()
+    }
 
     override fun onDestroy() {
         handler.removeCallbacksAndMessages(null)

@@ -24,6 +24,18 @@ class WordSearchView @JvmOverloads constructor(
 
     companion object {
         private const val SIZE = 10
+        private val TEXT_DARK = Color.parseColor("#0B0620")
+
+        /** One colour per found word, so the board and the word list agree. */
+        val PALETTE = intArrayOf(
+            Color.parseColor("#00E5C0"),
+            Color.parseColor("#FF6B9A"),
+            Color.parseColor("#B388FF"),
+            Color.parseColor("#FFB84D"),
+            Color.parseColor("#4DA3FF"),
+            Color.parseColor("#7CFF9B")
+        )
+
         private val DIRECTIONS = arrayOf(
             intArrayOf(0, 1), intArrayOf(0, -1),
             intArrayOf(1, 0), intArrayOf(-1, 0),
@@ -35,11 +47,13 @@ class WordSearchView @JvmOverloads constructor(
     private val letters = Array(SIZE) { CharArray(SIZE) { 'A' } }
     private val foundCells = HashSet<Int>()
     private val foundWords = HashSet<String>()
+    private val cellColor = HashMap<Int, Int>()
+    private var colorCursor = 0
 
     var words: List<String> = emptyList()
         private set
 
-    var onWordFound: ((String, Int) -> Unit)? = null
+    var onWordFound: ((String, Int, Int) -> Unit)? = null
     var onAllFound: (() -> Unit)? = null
 
     private var startCell = -1
@@ -54,6 +68,11 @@ class WordSearchView @JvmOverloads constructor(
     }
     private val foundPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.parseColor("#4D16A34A")
+    }
+    private val foundEdgePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.parseColor("#66FFFFFF")
+        style = Paint.Style.STROKE
+        strokeWidth = 2.5f
     }
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.WHITE
@@ -89,6 +108,8 @@ class WordSearchView @JvmOverloads constructor(
         words = placed
         foundCells.clear()
         foundWords.clear()
+        cellColor.clear()
+        colorCursor = 0
         startCell = -1
         endCell = -1
         dragging = false
@@ -140,9 +161,18 @@ class WordSearchView @JvmOverloads constructor(
                 val top = originY + r * cell
                 rect.set(left + cell * 0.06f, top + cell * 0.06f, left + cell * 0.94f, top + cell * 0.94f)
 
-                cellPaint.color = if (foundCells.contains(idx)) Color.parseColor("#2E16A34A")
-                else Color.parseColor("#14FFFFFF")
+                val accent = cellColor[idx]
+                if (accent != null) {
+                    cellPaint.color = PALETTE[accent % PALETTE.size]
+                    cellPaint.alpha = 235
+                } else {
+                    cellPaint.color = Color.parseColor("#14FFFFFF")
+                    cellPaint.alpha = 255
+                }
                 canvas.drawRoundRect(rect, radius, radius, cellPaint)
+                if (accent != null) {
+                    canvas.drawRoundRect(rect, radius, radius, foundEdgePaint)
+                }
 
                 if (inSelection(idx)) {
                     canvas.drawRoundRect(rect, radius, radius, foundPaint)
@@ -150,7 +180,8 @@ class WordSearchView @JvmOverloads constructor(
 
                 val cx = left + cell / 2f
                 val cy = top + cell / 2f - (textPaint.descent() + textPaint.ascent()) / 2f
-                textPaint.alpha = if (foundCells.contains(idx)) 255 else 220
+                textPaint.color = if (accent != null) TEXT_DARK else Color.WHITE
+                textPaint.alpha = if (accent != null) 255 else 220
                 canvas.drawText(letters[r][c].toString(), cx, cy, textPaint)
             }
         }
@@ -252,9 +283,13 @@ class WordSearchView @JvmOverloads constructor(
         val bwd = backward.toString()
         val word = words.firstOrNull { (it == fwd || it == bwd) && !foundWords.contains(it) } ?: return
 
+        val colorIndex = colorCursor % PALETTE.size
+        colorCursor++
+
         foundWords.add(word)
         foundCells.addAll(cells)
-        onWordFound?.invoke(word, cells.size)
+        for (idx in cells) cellColor[idx] = colorIndex
+        onWordFound?.invoke(word, cells.size, colorIndex)
         if (foundWords.size == words.size) onAllFound?.invoke()
     }
 }

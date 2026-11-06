@@ -9,7 +9,7 @@
     <!-- home -->
     <string name="home_kicker">PICK YOUR POISON</string>
     <string name="home_title">BRAIN BLITZ</string>
-    <string name="home_tagline">Three ways to wreck your friends. All offline.</string>
+    <string name="home_tagline">Five games, one app. All offline, all loud.</string>
     <string name="mode_trivia">Trivia</string>
     <string name="mode_trivia_sub">Ten questions, fifteen seconds each</string>
     <string name="mode_trivia_meta">%1$d categories · %2$d questions</string>
@@ -19,7 +19,15 @@
     <string name="mode_match">Sugar Rush</string>
     <string name="mode_match_sub">Swap candies, line up three or more</string>
     <string name="mode_match_meta">25 moves per board</string>
+    <string name="mode_snake">Pixel Snake</string>
+    <string name="mode_snake_sub">Eat, grow, never bite yourself</string>
+    <string name="mode_snake_meta">swipe the board or tap the arrows</string>
+    <string name="mode_block">Blockfall</string>
+    <string name="mode_block_sub">Rotate the shapes, clear the rows</string>
+    <string name="mode_block_meta">10x20 board · speeds up as you climb</string>
     <string name="home_footer">built for Jerry · plays offline · no ads</string>
+    <string name="sound_on">SOUND ON</string>
+    <string name="sound_off">SOUND OFF</string>
     <string name="best_chip">%1$d pts</string>
 
     <!-- categories -->
@@ -39,6 +47,12 @@
     <string name="feedback_timeout">Time up!</string>
     <string name="no_questions">No questions in this category yet.</string>
     <string name="quit_button">QUIT</string>
+    <string name="lines_label">LINES %1$d</string>
+    <string name="level_label">LEVEL %1$d</string>
+    <string name="snake_title">PIXEL SNAKE</string>
+    <string name="snake_over">YOU BIT IT</string>
+    <string name="block_title">BLOCKFALL</string>
+    <string name="block_over">BOARD FULL</string>
 
     <!-- result -->
     <string name="result_points_unit">POINTS</string>

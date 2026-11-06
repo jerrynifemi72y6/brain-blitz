@@ -172,6 +172,7 @@ class QuizActivity : Activity() {
             val gained = 100 + speedBonus + streakBonus
             score += gained
             optionViews[tapped].animate().scaleX(1.06f).scaleY(1.06f).setDuration(120).start()
+            Audio.play(this, if (streak >= 3) R.raw.sfx_streak else R.raw.sfx_correct)
             showFeedback(
                 praise[Random.nextInt(praise.size)] + "   +" + gained,
                 R.color.accent_alt
@@ -179,6 +180,7 @@ class QuizActivity : Activity() {
         } else {
             streak = 0
             optionViews[tapped].setBackgroundResource(R.drawable.bg_option_wrong)
+            Audio.play(this, R.raw.sfx_wrong)
             showFeedback(ouch[Random.nextInt(ouch.size)], R.color.wrong)
         }
 
@@ -193,6 +195,7 @@ class QuizActivity : Activity() {
         streak = 0
         val q = questions[index]
         optionViews[q.answerIndex].setBackgroundResource(R.drawable.bg_option_correct)
+        Audio.play(this, R.raw.sfx_wrong, 0.7f)
         showFeedback(getString(R.string.feedback_timeout), R.color.wrong)
         updateScoreLabels()
         lockOptions()
@@ -263,6 +266,16 @@ class QuizActivity : Activity() {
     private fun color(resId: Int): Int =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) getColor(resId)
         else @Suppress("DEPRECATION") resources.getColor(resId)
+
+    override fun onResume() {
+        super.onResume()
+        Audio.playMusic(this, R.raw.music_arcade)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Audio.pauseMusic()
+    }
 
     override fun onDestroy() {
         timer?.cancel()

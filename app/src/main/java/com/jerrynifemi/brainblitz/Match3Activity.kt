@@ -233,6 +233,7 @@ class Match3Activity : Activity() {
         moves--
         updateHeader()
         busy = true
+        Audio.play(this, R.raw.sfx_swap)
         handler.postDelayed({ resolve(1) }, 120)
     }
 
@@ -322,6 +323,7 @@ class Match3Activity : Activity() {
 
         score += matches.size * POINTS_PER_TILE * combo
         updateHeader()
+        Audio.play(this, if (combo > 1) R.raw.sfx_cascade else R.raw.sfx_pop)
 
         for (i in matches) {
             val tile = tiles[i]
@@ -382,6 +384,7 @@ class Match3Activity : Activity() {
 
     private fun endGame() {
         gameOver = true
+        Audio.play(this, R.raw.sfx_gameover)
         val newBest = Scores.record(this, SCORE_KEY, score)
         tvOverlayTitle.text = getString(R.string.m3_over)
         tvOverlayDetail.text = getString(
@@ -393,6 +396,16 @@ class Match3Activity : Activity() {
         overlay.alpha = 0f
         overlay.visibility = View.VISIBLE
         overlay.animate().alpha(1f).setDuration(260).start()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Audio.playMusic(this, R.raw.music_arcade)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Audio.pauseMusic()
     }
 
     override fun onDestroy() {

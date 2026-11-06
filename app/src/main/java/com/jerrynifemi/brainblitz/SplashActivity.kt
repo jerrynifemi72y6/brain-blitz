@@ -20,6 +20,8 @@ class SplashActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        Audio.preload(this)
+        handler.postDelayed({ Audio.play(this, R.raw.sfx_splash) }, 220)
 
         val badge = findViewById<ImageView>(R.id.logoBadge)
         val title = findViewById<TextView>(R.id.tvSplashTitle)

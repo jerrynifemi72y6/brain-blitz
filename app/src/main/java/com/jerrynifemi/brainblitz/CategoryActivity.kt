@@ -14,6 +14,7 @@ class CategoryActivity : Activity() {
         setContentView(R.layout.activity_categories)
 
         findViewById<View>(R.id.btnBack).setOnClickListener { finish() }
+        Audio.playMusic(this, R.raw.music_menu)
 
         val container = findViewById<LinearLayout>(R.id.listCategories)
         val categories = QuestionBank.categories(this)

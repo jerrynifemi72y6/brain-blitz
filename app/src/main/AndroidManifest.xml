@@ -51,6 +51,16 @@
             android:name=".Match3Activity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".SnakeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".BlockfallActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

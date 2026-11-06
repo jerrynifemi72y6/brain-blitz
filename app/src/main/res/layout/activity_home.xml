@@ -14,11 +14,36 @@
         android:paddingRight="22dp"
         android:paddingBottom="28dp">
 
-        <TextView
-            style="@style/Kicker"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/home_kicker" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Kicker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/home_kicker" />
+
+            <TextView
+                android:id="@+id/btnSound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/glass_pill"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.08"
+                android:paddingLeft="14dp"
+                android:paddingTop="7dp"
+                android:paddingRight="14dp"
+                android:paddingBottom="7dp"
+                android:text="@string/sound_on"
+                android:textColor="@color/accent_alt"
+                android:textSize="11sp" />
+        </LinearLayout>
 
         <TextView
             style="@style/GlassTitle"
@@ -41,29 +66,29 @@
             android:id="@+id/cardTrivia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="22dp"
             android:background="@drawable/glass_card_ripple"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="18dp"
-            android:paddingTop="20dp"
+            android:paddingTop="18dp"
             android:paddingRight="18dp"
-            android:paddingBottom="20dp">
+            android:paddingBottom="18dp">
 
             <TextView
-                android:layout_width="52dp"
-                android:layout_height="52dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@drawable/bg_badge"
                 android:gravity="center"
                 android:text="🧠"
-                android:textSize="24sp" />
+                android:textSize="22sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="14dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -73,21 +98,21 @@
                     android:fontFamily="sans-serif-medium"
                     android:text="@string/mode_trivia"
                     android:textColor="@color/text_primary"
-                    android:textSize="19sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="2dp"
                     android:text="@string/mode_trivia_sub"
                     android:textColor="@color/text_muted"
-                    android:textSize="13sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/tvTriviaMeta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="7dp"
                     android:letterSpacing="0.05"
                     android:textColor="@color/accent_alt"
                     android:textSize="11sp" />
@@ -106,29 +131,29 @@
             android:id="@+id/cardWordSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/glass_card_ripple"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="18dp"
-            android:paddingTop="20dp"
+            android:paddingTop="18dp"
             android:paddingRight="18dp"
-            android:paddingBottom="20dp">
+            android:paddingBottom="18dp">
 
             <TextView
-                android:layout_width="52dp"
-                android:layout_height="52dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@drawable/bg_badge"
                 android:gravity="center"
                 android:text="🔤"
-                android:textSize="24sp" />
+                android:textSize="22sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="14dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -138,20 +163,20 @@
                     android:fontFamily="sans-serif-medium"
                     android:text="@string/mode_word"
                     android:textColor="@color/text_primary"
-                    android:textSize="19sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="2dp"
                     android:text="@string/mode_word_sub"
                     android:textColor="@color/text_muted"
-                    android:textSize="13sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="7dp"
                     android:letterSpacing="0.05"
                     android:text="@string/mode_word_meta"
                     android:textColor="@color/accent_alt"
@@ -171,29 +196,29 @@
             android:id="@+id/cardMatch3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/glass_card_ripple"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="18dp"
-            android:paddingTop="20dp"
+            android:paddingTop="18dp"
             android:paddingRight="18dp"
-            android:paddingBottom="20dp">
+            android:paddingBottom="18dp">
 
             <TextView
-                android:layout_width="52dp"
-                android:layout_height="52dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@drawable/bg_badge"
                 android:gravity="center"
                 android:text="🍬"
-                android:textSize="24sp" />
+                android:textSize="22sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="14dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -203,20 +228,20 @@
                     android:fontFamily="sans-serif-medium"
                     android:text="@string/mode_match"
                     android:textColor="@color/text_primary"
-                    android:textSize="19sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="2dp"
                     android:text="@string/mode_match_sub"
                     android:textColor="@color/text_muted"
-                    android:textSize="13sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="7dp"
                     android:letterSpacing="0.05"
                     android:text="@string/mode_match_meta"
                     android:textColor="@color/accent_alt"
@@ -231,10 +256,140 @@
                 android:layout_marginLeft="8dp" />
         </LinearLayout>
 
+        <!-- Snake -->
+        <LinearLayout
+            android:id="@+id/cardSnake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/glass_card_ripple"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="18dp"
+            android:paddingTop="18dp"
+            android:paddingRight="18dp"
+            android:paddingBottom="18dp">
+
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_badge"
+                android:gravity="center"
+                android:text="🐍"
+                android:textSize="22sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/mode_snake"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/mode_snake_sub"
+                    android:textColor="@color/text_muted"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:letterSpacing="0.05"
+                    android:text="@string/mode_snake_meta"
+                    android:textColor="@color/accent_alt"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvSnakeBest"
+                style="@style/Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+        <!-- Blockfall -->
+        <LinearLayout
+            android:id="@+id/cardBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/glass_card_ripple"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="18dp"
+            android:paddingTop="18dp"
+            android:paddingRight="18dp"
+            android:paddingBottom="18dp">
+
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_badge"
+                android:gravity="center"
+                android:text="🧱"
+                android:textSize="22sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/mode_block"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/mode_block_sub"
+                    android:textColor="@color/text_muted"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:letterSpacing="0.05"
+                    android:text="@string/mode_block_meta"
+                    android:textColor="@color/accent_alt"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvBlockBest"
+                style="@style/Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="26dp"
             android:alpha="0.7"
             android:gravity="center"
             android:text="@string/home_footer"
