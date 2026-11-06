@@ -29,7 +29,7 @@ class SnakeView @JvmOverloads constructor(
 
     private var food = -1
     private var score = 0
-    private val random = Random.Default()
+    private val random = Random.Default
 
     var alive = true
         private set

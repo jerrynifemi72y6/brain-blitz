@@ -46,7 +46,7 @@ class BlockfallView @JvmOverloads constructor(
     }
 
     private val board = IntArray(COLS * ROWS)
-    private val random = Random.Default()
+    private val random = Random.Default
 
     private var cells = IntArray(8)
     private var colorIndex = 1
